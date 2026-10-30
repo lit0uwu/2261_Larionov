@@ -20,13 +20,13 @@ for i in range(t):
     n = int(input())
     p, q = map(int, input().split())
 
-    bits = []
+    otvet_bit = []
 
     for j in range(n):
         p = p * 2
-        b = p // q
-        bits.append(str(b))
+        bit = p // q
+        otvet_bit.append(str(bit))
         p = p % q
 
-    print("0." + "".join(bits))
+    print("0." + "".join(otvet_bit))
 ```
