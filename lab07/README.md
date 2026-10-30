@@ -23,10 +23,10 @@ for i in range(t):
     bits = []
 
     for j in range(n):
-        p *= 2
+        p = p * 2
         b = p // q
         bits.append(str(b))
-        p %= q
+        p = p % q
 
     print("0." + "".join(bits))
 ```
