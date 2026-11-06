@@ -75,6 +75,12 @@ print (*l, **d)
 ---
 ## Решение  
 Используется ключевой параметр key, фильтрами сортировки указываем (len(x), x)
+```
+lst = ['hello', 'hell', 'bye', 'world', 'bybye']
+lst.sort(key = lambda x : (len(x), x))
+print(lst)
+```
+
 ---
 
 ### Задание 5 **(2)**
