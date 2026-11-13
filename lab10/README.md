@@ -169,6 +169,27 @@ std::cout << reinterpret_cast<size_t>(d + 4) - reinterpret_cast<size_t>(d - 4) <
 std::cout << reinterpret_cast <double*>(3000) - reinterpret_cast <double*>(2000) << std::endl;
 ```
 
+---
+## Решение
+
+```
+#include <iostream>
+
+int main(){
+	std::cout << reinterpret_cast <double*>(3000) - reinterpret_cast <double*>(2000) << std::endl;
+	std::cout << reinterpret_cast <int*>(3000) - reinterpret_cast <int*>(2000) << std::endl;
+	std::cout << reinterpret_cast <char*>(3000) - reinterpret_cast <char*>(2000) << std::endl;
+}
+```
+
+3000 и 2000 превращаются в указатели типа double и вычитаются два указателя и разность адресов делится на размер типа, а при замене на int это 1000 на 4 = 250, на char = 1000, так как размер типа 1 байт.
+
+![Вывод](07/07.png)
+
+---
+
+
+
 ### Задание 8 **(2)**
 
 *Что надо дописать в записанной ниже программе вместо многоточий, чтобы
