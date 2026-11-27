@@ -195,60 +195,90 @@ int main() {
 }
 ```
 
+## Контест 5  
 
-## Дополнительные задания
-
-### Задание 1 **(2)**
-
-*В чем ошибка данного примера? Будет ли он работать при замене типа* **double** на **int**
-*в функции bar?*
-```
-#include <iostream>
-int foo(int x) {return x+1;}
-double bar(double x) {return x-1;}
-int main () {
-    decltype(foo) *pf;
-    pf = bar;
-    std::cout << pf(0);
-    return 0;
-}
+### Задача 1  
 
 ```
-
-### Задание 2 **(10)**
-
-*С использованием стандартных функций сортировки напишите на Java, C++ и Python программу
-для сортировки вещественных чисел по возрастанию целой части числа и убыванию дробной.
-Например, правильный порядок чисел после сортировки будет выглядеть так:*
-```1.9; 1.32; 1.0; 5.8; 5.1; 12.6; 13.2; 13.1.``` 
-
-*При реализации требуется использовать лямбда-функции.*
-
-### Задание 3 **(4)**
-*Напишите фрагмент программы вместо многоточия, 
-в котором в начало массива* **data** *будет вставляться новый элемент* **t**. *Существующие
-элементы при этом должны сместиться назад. Другие исправления вносить нельзя.
-Для этого потребуется выделить новый участок памяти и перенести в него все элементы.*
-```
-#include <iostream>
-int main() {
-    int n;
-    std::cin >> n;
-    *data = new int [n];
-    for (int i=0; i<n; i++)
-        std::cin >> data[i];
-     int t;
-     std::cin >> t;
-     ...
-     for (int i=0;i<n+1;i++)
-         std::cout << data[i] <<' '; 
-     return 0;
-}
+n, m = map(int, input().split())
+a = list(map(float, input().split()))
+for _ in range(m):
+    b = [0.0] * n
+    b[0] = (2 * a[0] + a[1]) / 3
+    b[n - 1] = (2 * a[n - 1] + a[n - 2]) / 3
+    for i in range(1, n - 1):
+        b[i] = (a[i - 1] + a[i] + a[i + 1]) / 3
+    a = b
+print(*a)
 ```
 
-### Задание 4 **(4)**
-*Напишите программу, которая создаст в памяти треугольник Паскаля размера* **n**.
-*Размер должен вводиться во время работы программы. 
-В программе не должна выделяться память для несуществующих элементов. В программе требуется использовать 
-массив указателей.* 
+### Задача 2
 
+```
+n = int(input())
+a = list(map(int, input().split()))
+a.sort(key=lambda x: abs(x) * 2 + (x > 0))
+print(*a)
+```
+
+### Задача 3
+
+```
+word = input()
+n = int(input())
+d = {}
+for _ in range(n):
+    key = input()
+    d[key] = input()
+for i in range(1, len(word)):
+    left = word[:i]
+    right = word[i:]
+    if left in d and right in d:
+        print(d[left] + d[right])
+        break
+```
+
+### Задача 4
+
+```
+n, m = map(int, input().split())
+a = []
+for _ in range(n):
+    a.append(list(map(int, input().split())))
+for j in range(m):
+    row = []
+    for i in range(n):
+        row.append(a[i][j])
+    print(*row)
+```
+
+### Задача 5
+
+```
+import sys
+from math import sqrt
+
+data = sys.stdin.read().split()
+w, h, s = int(data[0]), int(data[1]), int(data[2])
+n = int(data[3])
+
+trees = []
+for i in range(n):
+    x = int(data[4 + 2 * i])
+    y = int(data[5 + 2 * i])
+    k = x // s
+    if k % 2 == 0:
+        trees.append((k, y, x))
+    else:
+        trees.append((k, -y, x))
+trees.sort()
+
+total = 0.0
+px, py = trees[0][2], abs(trees[0][1])
+for k, y, x in trees[1:]:
+    y = abs(y)
+    total += sqrt((x - px) ** 2 + (y - py) ** 2)
+    px, py = x, y
+
+print(total)
+```
