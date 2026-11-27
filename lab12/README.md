@@ -163,6 +163,59 @@ int main() {
 куче, в статической памяти и на стеке. Выведите адреса полей.
 Объясните результат.*
 
+---
+
+## Решение  
+
+```
+#include <iostream>
+
+class box {
+private:
+	double lenght;
+	double width;
+    double height;
+    static int objectCount;
+
+public:
+	box(double _lenght, double _width, double _height):
+		lenght(_lenght), width(_width), height(_height){
+        objectCount++;
+    }
+    ~box() {
+        objectCount--;
+    }
+    double volume() const {
+        return lenght * width * height;
+    }
+    void addr() const {
+      std::cout << "address of lenght " << &lenght << "\n";
+      std::cout << "address of width " << &width << "\n";
+      std::cout << "address of height " << &height << "\n";
+      std::cout << "address of static field objectCount " << &lenght << "\n";
+    }
+};
+
+int box::objectCount = 0;
+
+box c(7, 8, 9);
+
+int main(){
+	box a (1, 2, 3);
+	box	*b = new box(4, 5, 6);
+
+	a.addr();
+	b->addr();
+	c.addr();
+
+    delete b;
+    return 0;
+}
+
+```
+
+---
+
 ### Задание 5 **(2)**
 
 *Напишите программу, которая продемонстрирует разницу между
@@ -195,6 +248,25 @@ private :
 
 Напишите программу для проверки работы методов.*
 
+---
+
+## Решение  
+
+```
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return '(' + str(self.x) + ', ' + str(self.y) + ')'
+
+a = Point(10, 5)
+print(a)
+```
+
+---
+
 ### Задание 8 **(2)**
 
 *Напишите программу на Python в которой будет определяться класс*
@@ -204,6 +276,39 @@ private :
 прямоугольника. 
 
 Напишите программу для проверки работы методов.*
+
+---
+
+## Решение  
+
+```
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __str__(self):
+        return '(' + str(self.x) + ', ' + str(self.y) + ')'
+
+class Rectangle:
+    def __init__(self, a, b):
+        self.topleft = a
+        self.bottomright = b
+    def __str__(self):
+        return '|' + str(self.topleft) + '-' + str(self.bottomright) + '|'
+
+a = Point(10, 5)
+print(a)
+r = Rectangle(Point(0, 10), Point(10, 0))
+print(r)
+
+Rectangle.square = lambda self : abs((self.topleft.x - self.bottomright.x) * \
+                    (self.topleft.y - self.bottomright.y))
+
+print(r.square())
+```
+
+---
+
 
 ### Задание 9 **(2)**
 
