@@ -9,12 +9,92 @@
 конструктор. Найдите размер одного объекта этого класса с
 использованием* **sizeof**.
 
+---
+
+## Решение  
+
+```
+#include <iostream>
+
+class box {
+private:
+	double lenght;
+	double width;
+	double height;
+
+public:
+	box(double _lenght, double _width, double _height):
+		lenght(_lenght), width(_width), height(_height){
+
+		}
+};
+
+int main(){
+	box b(10, 6, 3);
+	std::cout << sizeof(b) << std::endl;
+}
+
+```
+
+![Вывод](01/01.png)  
+
+Вывод 24, т.к. размер объекта равен сумме размеров его полей (8 байт по три раза - 24 байта)
+
+---
+
 ### Задание 2 **(2)**
 
 *Добавьте в класс методы для вычисления объема коробки и
 площади поверхности всех граней. Напишите программу, тестирующую
 работу методов. Проверьте, изменился ли размер одного объекта этого
 класса. Объясните результат*
+
+---
+
+## Решение  
+
+```
+#include <iostream>
+
+class box {
+private:
+	double lenght;
+	double width;
+	double height;
+
+
+
+public:
+	box(double _lenght, double _width, double _height):
+		lenght(_lenght), width(_width), height(_height){
+
+		}
+	double volume();
+	double surface();
+};
+
+double box::volume(){
+	return lenght * width * height;
+}
+
+double box::surface(){
+	return 2 * (lenght * width + lenght * height + width * height);
+}
+
+int main(){
+	box b(10, 6, 3);
+	std::cout << "Box volume " << b.volume() << std::endl;
+	std::cout << "Box surface area " << b.surface() << std::endl;
+	std::cout << "Object size = " << sizeof(b) << std::endl;
+}
+```
+
+![Вывод](02/02.png)  
+
+Выводы класса в самом классе не хранятся  
+
+---
+
 
 ### Задание 3 **(2)**
 
@@ -23,6 +103,15 @@
 оба объекта. Не забывайте, что объекты созданные в куче следует
 освобождать.*
 
+---
+
+## Решение  
+
+```
+```
+
+
+---
 
 ### Задание 4 **(2)**
 
